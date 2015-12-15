@@ -2,15 +2,15 @@
 import hashlib
 import os
 import unittest
-from io import BytesIO
-from unittest import mock
 
 from PIL import Image
 
+from thumbnails.compat import BytesIO
 from thumbnails.conf import settings
 from thumbnails.images import SourceFile, Thumbnail
 
 from . import data
+from .compat import mock
 from .utils import has_installed
 
 

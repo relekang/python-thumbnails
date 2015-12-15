@@ -2,9 +2,19 @@ tasks:
  - tox -e flake8
  - tox -e isort
  - tox -e py34-pillow
+ - tox -e py27-pillow
+ - tox -e py34-pgmagick
+ - tox -e py27-pgmagick
+ - tox -e py34-wand
+ - tox -e py27-wand
  - tox -e py34-django17
+ - tox -e py27-django17
  - tox -e py34-django18
+ - tox -e py27-django18
  - tox -e py34-redis
+ - tox -e py27-redis
+ - flake8
+ - isort -rc -c thumbnails tests
  - coverage combine && coverage report && coverage xml
  - tox -e docs
 

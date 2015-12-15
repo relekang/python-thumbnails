@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import unittest
-from unittest import mock
 
 from thumbnails.cache_backends import (BaseCacheBackend, DjangoCacheBackend, RedisCacheBackend,
                                        SimpleCacheBackend)
 from thumbnails.images import Thumbnail
 
+from .compat import mock
 from .utils import has_installed
 
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import unittest
-from unittest import mock
 
 from thumbnails import settings
 
+from .compat import mock
 from .utils import has_installed
 
 try:

@@ -2,7 +2,6 @@
 import hashlib
 import os
 import unittest
-from unittest import mock
 
 from PIL import Image
 
@@ -11,6 +10,7 @@ from thumbnails.engines.base import BaseThumbnailEngine
 from thumbnails.errors import ThumbnailError
 from thumbnails.images import SourceFile, Thumbnail
 
+from .compat import mock
 from .utils import is_tox_env
 
 

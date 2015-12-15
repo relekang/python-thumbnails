@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import base64
 import os
-from io import BytesIO
 
 import requests
 
+from thumbnails.compat import BytesIO
 from thumbnails.conf import settings
 from thumbnails.helpers import get_engine, get_storage_backend
 

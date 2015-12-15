@@ -1,6 +1,9 @@
 Changes since last release
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-Nothing yet.
+
+0.6.0
+~~~~~
+ - Reintroduce support for Python 2
 
 0.5.0
 ~~~~~
