@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import unittest
-from unittest import mock
 
 from thumbnails import get_thumbnail
 from thumbnails.conf import settings
 from thumbnails.images import Thumbnail
 
+from .compat import mock
 from .utils import override_settings
 
 

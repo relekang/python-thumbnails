@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import codecs
 import os
-from io import BytesIO
 
 from thumbnails import helpers
 
+from .compat import BytesIO, makedirs
 from .conf import settings
 
 
@@ -51,7 +51,7 @@ class FilesystemStorageBackend(BaseStorageBackend):
     def __init__(self):
         super(FilesystemStorageBackend, self).__init__()
         if not os.path.exists(self.location):
-            os.makedirs(self.location, exist_ok=True)
+            makedirs(self.location, exist_ok=True)
 
     def _open(self, name, mode='rb', encoding=None, errors='strict'):
         return codecs.open(name, mode=mode, encoding=encoding, errors=errors)
@@ -61,7 +61,7 @@ class FilesystemStorageBackend(BaseStorageBackend):
 
     def _save(self, name, data):
         if not os.path.exists(os.path.dirname(name)):
-            os.makedirs(os.path.dirname(name), exist_ok=True)
+            makedirs(os.path.dirname(name), exist_ok=True)
 
         with open(name, 'wb') as f:
             f.write(data)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from io import BytesIO
 
+from thumbnails.compat import BytesIO
 from thumbnails.errors import ThumbnailError
 
 from .base import BaseThumbnailEngine

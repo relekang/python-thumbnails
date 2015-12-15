@@ -2,10 +2,10 @@
 import os
 import unittest
 from copy import deepcopy
-from unittest import mock
 
 from thumbnails.conf.wrapper import SettingsWrapper
 
+from .compat import mock
 from .utils import has_installed
 
 
