@@ -55,7 +55,6 @@ class FilesystemStorageBackend(BaseStorageBackend):
     def __init__(self):
         super(FilesystemStorageBackend, self).__init__()
         if not os.path.exists(self.location):
-            #os.makedirs(self.location, exist_ok=True)
             Path(self.location).mkdir(exist_ok=True)
 
     def _open(self, name, mode='rb', encoding=None, errors='strict'):
@@ -65,10 +64,7 @@ class FilesystemStorageBackend(BaseStorageBackend):
         return os.path.exists(name)
 
     def _save(self, name, data):
-        print os.path.dirname(name)
-
         if not os.path.exists(os.path.dirname(name)):
-            #os.makedirs(os.path.dirname(name), exist_ok=True)
             Path(os.path.dirname(name)).mkdir(exist_ok=True)
 
         with open(name, 'wb') as f:
