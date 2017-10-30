@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-
-try:
+import sys
+if sys.version_info.major == 3:  # noqa: E402
     from pathlib import Path
-    py3 = True
-except ImportError:
+    py3 = True  # noqa: E402
+else:  # noqa: E402
     from pathlib2 import Path  # Python 2 backport
-    py3 = False
+    py3 = False  # noqa: E402
 import codecs
 import os
 from io import BytesIO

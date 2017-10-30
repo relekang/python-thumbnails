@@ -2,13 +2,14 @@
 import importlib
 import json
 import os
+import sys
 
 from . import defaults
 
-try:
+if sys.version_info.major == 3:
     from pathlib import Path
     py3 = True
-except ImportError:
+else:
     from pathlib2 import Path  # Python 2 backport
     py3 = False
 
