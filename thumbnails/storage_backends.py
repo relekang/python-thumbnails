@@ -13,6 +13,7 @@ except ImportError:
     from pathlib2 import Path  # Python 2 backport
     py3 = False
 
+
 class BaseStorageBackend(object):
 
     def __init__(self):
@@ -57,7 +58,7 @@ class FilesystemStorageBackend(BaseStorageBackend):
         super(FilesystemStorageBackend, self).__init__()
         if not os.path.exists(self.location):
             if py3:
-                os.makedirs(os.path.dirname(name), exist_ok=True)
+                os.makedirs(os.path.dirname(self.location), exist_ok=True)
             else:
                 Path(self.location).mkdir(exist_ok=True)
 
