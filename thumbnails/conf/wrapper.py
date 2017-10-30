@@ -7,8 +7,10 @@ from . import defaults
 
 try:
     from pathlib import Path
+    py3 = True
 except ImportError:
     from pathlib2 import Path  # Python 2 backport
+    py3 = False
 
 
 class SettingsWrapper(object):
@@ -32,8 +34,12 @@ class SettingsWrapper(object):
                 pass
 
         if not os.path.exists(self.THUMBNAIL_PATH):
-            Path(os.path.dirname(self.THUMBNAIL_PATH)).mkdir(exist_ok=True)
-            Path(os.path.dirname(self.THUMBNAIL_PATH)).mkdir(exist_ok=True)
+            if py3:
+                os.makedirs(os.path.dirname(self.THUMBNAIL_PATH), exist_ok=True)
+                os.makedirs(self.THUMBNAIL_PATH, exist_ok=True)
+            else:
+                Path(os.path.dirname(self.THUMBNAIL_PATH)).mkdir(exist_ok=True)
+                Path(os.path.dirname(self.THUMBNAIL_PATH)).mkdir(exist_ok=True)
 
     def __getattr__(self, key):
         value = self.defaults.get(key, 'unknown setting')

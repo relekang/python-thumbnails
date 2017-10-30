@@ -8,9 +8,10 @@ from .conf import settings
 
 try:
     from pathlib import Path
+    py3 = True
 except ImportError:
     from pathlib2 import Path  # Python 2 backport
-
+    py3 = False
 
 class BaseStorageBackend(object):
 
@@ -55,7 +56,10 @@ class FilesystemStorageBackend(BaseStorageBackend):
     def __init__(self):
         super(FilesystemStorageBackend, self).__init__()
         if not os.path.exists(self.location):
-            Path(self.location).mkdir(exist_ok=True)
+            if py3:
+                os.makedirs(os.path.dirname(name), exist_ok=True)
+            else:
+                Path(self.location).mkdir(exist_ok=True)
 
     def _open(self, name, mode='rb', encoding=None, errors='strict'):
         return codecs.open(name, mode=mode, encoding=encoding, errors=errors)
@@ -65,7 +69,10 @@ class FilesystemStorageBackend(BaseStorageBackend):
 
     def _save(self, name, data):
         if not os.path.exists(os.path.dirname(name)):
-            Path(os.path.dirname(name)).mkdir(exist_ok=True)
+            if py3:
+                os.makedirs(os.path.dirname(name), exist_ok=True)
+            else:
+                Path(os.path.dirname(name)).mkdir(exist_ok=True)
 
         with open(name, 'wb') as f:
             f.write(data)
