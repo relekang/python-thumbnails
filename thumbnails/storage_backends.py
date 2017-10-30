@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-import codecs
-import os
-from io import BytesIO
-from thumbnails import helpers
-
-from .conf import settings
 
 try:
     from pathlib import Path
@@ -12,6 +6,13 @@ try:
 except ImportError:
     from pathlib2 import Path  # Python 2 backport
     py3 = False
+import codecs
+import os
+from io import BytesIO
+
+from thumbnails import helpers
+
+from .conf import settings
 
 
 class BaseStorageBackend(object):
