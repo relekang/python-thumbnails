@@ -8,7 +8,7 @@ from . import defaults
 try:
     from pathlib import Path
 except ImportError:
-    from pathlib2 import Path # Python 2 backport
+    from pathlib2 import Path  # Python 2 backport
 
 
 class SettingsWrapper(object):

@@ -9,7 +9,7 @@ from .conf import settings
 try:
     from pathlib import Path
 except ImportError:
-    from pathlib2 import Path # Python 2 backport
+    from pathlib2 import Path  # Python 2 backport
 
 
 class BaseStorageBackend(object):
