@@ -17,7 +17,7 @@ from .utils import has_installed
 class ThumbnailTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.instance = Thumbnail(['n', 'ame'])
+        self.instance = Thumbnail(['n', 'ame'], 'jpg')
         self.instance.size = 200, 400
 
     def test_name(self):
@@ -50,7 +50,7 @@ class ThumbnailTestCase(unittest.TestCase):
 
     @mock.patch('{}.exists'.format(settings.THUMBNAIL_STORAGE_BACKEND))
     def test_exists(self, mock_exists):
-        self.instance = Thumbnail(['name'])
+        self.instance = Thumbnail(['name'], 'jpg')
         self.assertTrue(self.instance.exists)
         mock_exists.assert_called_with(self.instance.path)
 

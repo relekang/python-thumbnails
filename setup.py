@@ -10,6 +10,7 @@ def _read_long_description():
     except Exception:
         return None
 
+
 with open('thumbnails/__init__.py', 'r') as fd:
     version = re.search(
         r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
@@ -34,8 +35,8 @@ setup(
     packages=find_packages(exclude='tests'),
     license='MIT',
     install_requires=[
-        'six==1.9.0',
-        'requests==2.7.0'
+        'six>=1.9.0',
+        'requests>=2.7.0'
     ],
     include_package_data=True,
     classifiers=[

@@ -17,7 +17,7 @@ class CacheBackendTestMixin(object):
         self.assertIsNone(self.backend.get('not-in-cache'))
 
     def test_set_and_get(self):
-        thumbnail = Thumbnail(['n', 'ame'])
+        thumbnail = Thumbnail(['n', 'ame'], 'jpg')
         self.backend.set(thumbnail)
         cached_thumbnail = self.backend.get(thumbnail.name)
         self.assertIsInstance(cached_thumbnail, Thumbnail)
@@ -39,7 +39,7 @@ class BaseCacheBackendTestCase(unittest.TestCase):
 
     @mock.patch('thumbnails.cache_backends.BaseCacheBackend._set')
     def test_set_calls_backend_specific_set(self, mock__set):
-        thumbnail = Thumbnail(['hi', 'there'])
+        thumbnail = Thumbnail(['hi', 'there'], 'jpg')
         self.backend.set(thumbnail)
         mock__set.assert_has_calls([mock.call('hi/there', thumbnail)])
 

@@ -22,7 +22,14 @@ install:
 
 script:
  - set -o pipefail
- - tox | hide-env GH_TOKEN PYPI_PASSWORD
+ - tox -e flake8 | hide-env GH_TOKEN PYPI_PASSWORD
+ - tox -e isort | hide-env GH_TOKEN PYPI_PASSWORD
+ - tox -e pillow | hide-env GH_TOKEN PYPI_PASSWORD
+ - tox -e django111 | hide-env GH_TOKEN PYPI_PASSWORD
+ - tox -e django18 | hide-env GH_TOKEN PYPI_PASSWORD
+ - tox -e redis | hide-env GH_TOKEN PYPI_PASSWORD
+ - tox -e coverage-report | hide-env GH_TOKEN PYPI_PASSWORD
+ - tox -e docs | hide-env GH_TOKEN PYPI_PASSWORD
 
 after_success:
  - codecov

@@ -9,7 +9,7 @@ from PIL import Image
 from thumbnails.engines import DummyEngine, PgmagickEngine, PillowEngine, WandEngine
 from thumbnails.engines.base import BaseThumbnailEngine
 from thumbnails.errors import ThumbnailError
-from thumbnails.images import SourceFile, Thumbnail
+from thumbnails.images import SourceFile
 
 from .utils import is_tox_env
 
@@ -111,10 +111,6 @@ class BaseEngineTestCase(unittest.TestCase):
         self.assertEqual(calculate_scaling_factor(original_size, (200, 300), False), 0.5)
         self.assertEqual(calculate_scaling_factor(original_size, (200, None), False), 0.5)
         self.assertEqual(calculate_scaling_factor(original_size, (None, 300), False), 0.5)
-
-    def test_create_thumbnail_object(self):
-        name = ['851', '521c21fe9709802e9d4eb20a5fe84c18cd3ad']
-        self.assertIsInstance(self.engine.create_thumbnail_object(name), Thumbnail)
 
     def test_parse_size(self):
         self.assertEqual(self.engine.parse_size('100'), (100, None))

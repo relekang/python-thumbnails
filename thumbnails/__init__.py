@@ -37,7 +37,8 @@ def get_thumbnail(original, size, **options):
     cache = get_cache_backend()
     original = SourceFile(original)
     crop = options.get('crop', None)
-    thumbnail_name = generate_filename(original, size, crop, options)
+    options = engine.evaluate_options(options)
+    thumbnail_name = generate_filename(original, size, crop)
 
     if settings.THUMBNAIL_DUMMY:
         engine = DummyEngine()
@@ -49,9 +50,8 @@ def get_thumbnail(original, size, **options):
     if not force and cached:
         return cached
 
-    thumbnail = Thumbnail(thumbnail_name)
+    thumbnail = Thumbnail(thumbnail_name, engine.get_format(original, options))
     if force or not thumbnail.exists:
-        options = engine.evaluate_options(options)
         size = engine.parse_size(size)
         thumbnail.image = engine.get_thumbnail(original, size, crop, options)
         thumbnail.save(options)

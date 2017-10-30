@@ -13,7 +13,7 @@ class DummyEngine(BaseThumbnailEngine):
     """
 
     def create(self, original, size, crop, options=None):
-        thumbnail = Thumbnail('dummy_{}x{}'.format(size[0], size[1]))
+        thumbnail = Thumbnail('dummy_{}x{}'.format(size[0], size[1]), 'jpg')
         thumbnail.size = size
         thumbnail._url = self._get_url(size)
         return thumbnail

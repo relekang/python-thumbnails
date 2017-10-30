@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from thumbnails.conf import settings
 from thumbnails.errors import ThumbnailError
-from thumbnails.images import Thumbnail
 
 CROP_ALIASES = {
     'x': {
@@ -155,7 +154,7 @@ class BaseThumbnailEngine(object):
         return {
             'scale_up': settings.THUMBNAIL_SCALE_UP,
             'quality': settings.THUMBNAIL_QUALITY,
-            'colormode': settings.THUMBNAIL_COLORMODE
+            'colormode': settings.THUMBNAIL_COLORMODE,
         }
 
     def get_format(self, image, options):
@@ -163,9 +162,12 @@ class BaseThumbnailEngine(object):
             return options['format']
         if settings.THUMBNAIL_FORCE_FORMAT is not None:
             return settings.THUMBNAIL_FORCE_FORMAT
-        image_format = self.engine_get_format(image)
-        if image_format:
-            return image_format
+        try:
+            image_format = self.engine_get_format(image)
+            if image_format:
+                return image_format
+        except AttributeError:
+            pass
         return settings.THUMBNAIL_FALLBACK_FORMAT
 
     @staticmethod
@@ -222,7 +224,8 @@ class BaseThumbnailEngine(object):
         :rtype: int
         """
         return int(
-            max(0,
+            max(
+                0,
                 min(percent * original_length / 100.0, original_length - length / 2) - length / 2)
         )
 
@@ -237,10 +240,6 @@ class BaseThumbnailEngine(object):
         else:
             resolution_size += None,
         return resolution_size
-
-    @staticmethod
-    def create_thumbnail_object(name):
-        return Thumbnail(name)
 
     def engine_load_image(self, original):
         """

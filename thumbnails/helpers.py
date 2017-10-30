@@ -5,7 +5,7 @@ import importlib
 from thumbnails.conf import settings
 
 
-def generate_filename(original, size, crop, options):
+def generate_filename(original, size, crop):
     h = hashlib.sha1(':'.join([original.file, str(size), str(crop)]).encode()).hexdigest()
     return [h[:3], h[3:]]
 
