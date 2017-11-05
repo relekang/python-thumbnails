@@ -85,5 +85,5 @@ class SourceFile(object):
         if self.file.startswith('http'):
             return requests.get(self.file, stream=True).raw
         elif self.file.startswith(r'data:image/'):
-            return BytesIO(base64.b64decode(self.file.replace('data:image/jpeg;base64,', '')))
+            return BytesIO(base64.b64decode(self.file.split(",")[1]))
         return get_storage_backend().open(self.file)
